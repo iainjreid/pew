@@ -24,16 +24,5 @@
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
   },
-  "greenkeeper": {
-    "commitMessages": {
-      "initialBadge": "Add Greenkeeper badge",
-      "initialDependencies": "Update dependencies",
-      "initialBranches": "Whitelist greenkeeper branches",
-      "dependencyUpdate": "Update ${dependency} to version ${version}",
-      "devDependencyUpdate": "Update ${dependency} to version ${version}",
-      "dependencyPin": "Pin ${dependency} to ${oldVersion}",
-      "devDependencyPin": "Pin ${dependency} to ${oldVersion}"
-    }
-  },
   "private": true
 }
