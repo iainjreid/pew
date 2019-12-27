@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "parcel build src/main/index.js",
+    "build": "parcel build packages/pew/src/main/index.js",
     "lint": "eslint src",
     "start": "parcel index.html",
     "test": "echo \"Warn: no test specified\""
