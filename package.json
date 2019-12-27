@@ -1,28 +1,14 @@
 {
   "scripts": {
-    "prebuild": "npm run lint",
-    "build": "webpack-cli -p",
-    "docs": "jsdoc source -d docs",
-    "lint": "eslint --fix source",
-    "prewatch": "npm run lint",
-    "watch": "webpack-dev-server --host 0.0.0.0"
+    "build": "parcel build src/main/index.js",
+    "lint": "eslint src",
+    "start": "parcel index.html",
+    "test": "echo \"Warn: no test specified\""
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^9.0.0",
-    "babel-loader": "^8.0.1",
-    "babel-preset-es2015": "^6.24.0",
-    "eslint": "^4.19.1",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-import": "^2.10.0",
-    "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "jsdoc": "^3.4.1",
-    "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13",
-    "webpack-dev-server": "^3.1.1"
+    "@babel/core": "^7.7.7",
+    "babel-preset-es2015": "^6.24.1",
+    "parcel-bundler": "^1.12.4"
   },
   "private": true
 }
