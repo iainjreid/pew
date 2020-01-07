@@ -1,8 +1,8 @@
 'use strict'
 
-export const fpsDetails = true
+export const fpsTarget = 60
 
-export const fpsUpdateFrequency = 1000
+export const performanceDetails = true
 
 export const boundryBoxEnabled = false
 

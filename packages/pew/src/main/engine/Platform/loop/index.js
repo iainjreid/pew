@@ -8,9 +8,12 @@ import * as config from '../config'
  */
 
 let tasks = []
+let renders = []
 let shouldRun
-let fpsCounter = 0
-let fpsDuration = 0
+let tasksTime = 0
+let tasksTicks = 0
+let rendersTime = 0
+let rendersTicks = 0
 
 /**
  * @description This method will add the supplied function to the processing cycle.
@@ -19,16 +22,23 @@ let fpsDuration = 0
  *
  * @returns {Object} The loop object
  */
-export function add (fn, priority = 60, scope) {
+export function add (fn, priority = 60, scope, isRender = false) {
   // Ensure that a function has been provided
   if (typeof fn !== 'function') {
     throw Error('Only functions may be added to the loop')
   }
 
-  tasks.push({ fn, priority, scope })
+  if (isRender) {
+    renders.push({ fn, priority, scope })
 
-  // Sort the task by priority
-  tasks = tasks.sort((a, b) => a.priority < b.priority)
+    // Sort the renders by priority
+    renders = renders.sort((a, b) => a.priority < b.priority)
+  } else {
+    tasks.push({ fn, priority, scope })
+
+    // Sort the task by priority
+    tasks = tasks.sort((a, b) => a.priority < b.priority)
+  }
 }
 
 /**
@@ -38,7 +48,11 @@ export function add (fn, priority = 60, scope) {
  */
 export function start () {
   shouldRun = true
-  window.requestAnimationFrame(process)
+
+  window.requestAnimationFrame(() => {
+    processTasks()
+    processRenders()
+  })
 }
 
 /**
@@ -50,33 +64,60 @@ export function stop () {
   shouldRun = false
 }
 
-function process () {
+function processTasks () {
   if (!shouldRun) {
     return
   }
 
-  // FPS Details
-  if (config.fpsDetails) {
-    fpsDuration -= performance.now()
-  }
+  // Process Recording - start
+  const processingStart = performance.now()
 
   for (let task of tasks) {
     task.fn.call(task.scope)
   }
 
-  // FPS Details
-  if (config.fpsDetails) {
-    fpsCounter++
-    fpsDuration += performance.now()
+  // Process Recording - end
+  const processingEnd = performance.now()
+
+  // Process Details
+  if (config.performanceDetails) {
+    tasksTime += processingEnd - processingStart
   }
 
-  window.requestAnimationFrame(process)
+  tasksTicks++
+
+  setTimeout(processTasks, 10 - (processingEnd - processingStart))
+}
+
+function processRenders () {
+  if (!shouldRun) {
+    return
+  }
+
+  // FPS Recording - start
+  const fpsStart = performance.now()
+
+  for (let render of renders) {
+    render.fn.call(render.scope)
+  }
+
+  // FPS Recording - end
+  const fpsEnd = performance.now()
+  
+  // FPS Details
+  if (config.performanceDetails) {
+    rendersTime += fpsEnd - fpsStart
+  }
+
+  rendersTicks++
+
+  setTimeout(processRenders, 1000 / config.fpsTarget - (fpsEnd - fpsStart))
 }
 
 window.onerror = stop
 
 // FPS Details
-if (config.fpsDetails) {
+if (config.performanceDetails) {
   let stats
 
   if (config.debugBox) {
@@ -93,17 +134,18 @@ if (config.fpsDetails) {
   let totalTime
 
   setInterval(() => {
-    totalTime = (performance.now() - startTime) / (config.fpsUpdateFrequency / 1000)
-    fpsCounter = fpsCounter / config.fpsUpdateFrequency * totalTime
-    fpsDuration = fpsDuration / config.fpsUpdateFrequency * totalTime
+    totalTime = performance.now() - startTime
+    tasksTime = (tasksTime / totalTime) * 1000
+    tasksTicks = (tasksTicks / totalTime) * 1000
 
     const debugMsg =
-      `${roundNumber(fpsCounter)} FPS\n` +
-      `- Actual duration: ${roundNumber(totalTime)}ms\n` +
-      `- Time spent processing: ${roundNumber(fpsDuration)}ms\n` +
-      `- Average tick duration: ${roundNumber(fpsDuration / fpsCounter)}ms\n` +
-      `- Average frame duration: ${roundNumber(totalTime / fpsCounter)}ms\n` +
-      `- Processing utilisation: ${roundNumber(fpsDuration / totalTime * 100)}%`
+      `(Actual duration: ${roundNumber(totalTime)}ms)\n\n` +
+      `RENDERS: [${roundNumber(rendersTicks)}] \n\n` +
+      `- Time spent rendering: ${roundNumber(rendersTime)}ms\n` +
+      `- Average frame duration: ${roundNumber(totalTime / rendersTicks)}ms\n` +
+      `TASKS: [${roundNumber(tasksTicks)}]\n\n` +
+      `- Time spent processing: ${roundNumber(tasksTime)}ms\n` +
+      `- Average tick duration: ${roundNumber(tasksTime / tasksTicks)}ms`
 
     if (config.debugBox) {
       stats.innerHTML = debugMsg
@@ -112,9 +154,11 @@ if (config.fpsDetails) {
     }
 
     startTime = performance.now()
-    fpsCounter = 0
-    fpsDuration = 0
-  }, config.fpsUpdateFrequency)
+    tasksTime = 0
+    tasksTicks = 0
+    rendersTime = 0
+    rendersTicks = 0
+  }, 1000)
 }
 
 function roundNumber (number) {

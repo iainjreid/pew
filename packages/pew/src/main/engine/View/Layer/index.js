@@ -18,7 +18,7 @@ export class Layer {
     document.body.appendChild(this._canvas)
 
     // Add a loop task
-    Platform.loop.add(this.renderLayer, Infinity, this)
+    Platform.loop.add(this.renderLayer, Infinity, this, true)
   }
 
   /**

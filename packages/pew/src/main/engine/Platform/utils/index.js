@@ -1,5 +1,7 @@
 'use strict'
 
+import * as config from "../config"
+
 let uid = 0
 
 /**
@@ -70,4 +72,8 @@ export function degreesToRadians (degrees) {
 
 export function radiansToDegrees (radians) {
   return radians * 180 / Math.PI
+}
+
+export function pps(distance) {
+  return distance / config.fpsTarget;
 }

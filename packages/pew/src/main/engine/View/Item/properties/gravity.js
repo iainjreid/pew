@@ -2,6 +2,7 @@
 
 // Dependencies
 import { Platform } from '../../../Platform'
+import { pps } from '../../../Platform/utils'
 
 const entities = []
 
@@ -11,6 +12,7 @@ export function gravity (superclass) {
       super(...arguments)
       entities.push(this)
 
+      this.gravityAmount = 0.4
       this.gravityDx = 0
       this.gravityDy = 0
       this.gravityEnabledDx = true
@@ -29,7 +31,7 @@ export function gravity (superclass) {
       this.setGravityDy(dy)
     }
 
-    getGravityDx (dx) {
+    getGravityDx () {
       return this.gravityDx
     }
 
@@ -45,7 +47,7 @@ export function gravity (superclass) {
       this.gravityEnabledDx = true
     }
 
-    getGravityDy (dy) {
+    getGravityDy () {
       return this.gravityDy
     }
 
@@ -73,8 +75,8 @@ Platform.loop.add(() => {
       dy: ballGravity.dy
     }, ballGravity, ballCentre))
 
-    const diffX = entity.gravityEnabledDx ? Platform.utils.adjacentLength(angle, 2) : 0
-    const diffY = entity.gravityEnabledDy ? Platform.utils.oppositeLength(angle, 2) : 0
+    const diffX = entity.gravityEnabledDx ? Platform.utils.adjacentLength(angle, entity.gravityAmount) : 0
+    const diffY = entity.gravityEnabledDy ? Platform.utils.oppositeLength(angle, entity.gravityAmount) : 0
 
     diffX && entity.setVectorX(entity.getVectorX() + (ballCentre.dx < ballGravity.dx ? diffX : -diffX))
     diffY && entity.setVectorY(entity.getVectorY() + (ballCentre.dy < ballGravity.dy ? diffY : -diffY))
