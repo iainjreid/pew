@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "parcel build --public-url /pew index.html",
+    "build": "parcel build --public-url /pew samples/orbit/index.html",
     "lint": "eslint src",
     "start:orbit": "parcel samples/orbit/index.html",
     "test": "echo \"Warn: no test specified\""
