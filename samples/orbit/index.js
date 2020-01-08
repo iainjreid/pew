@@ -1,6 +1,7 @@
 'use strict'
 
 import { Platform, View } from '../../packages/pew/src/main/engine'
+import { randomNumberBetween } from '../../packages/pew/src/main/engine/Platform/utils';
 
 /**
  * @todo Add check to ensure total energy in the view is constant over time.
@@ -8,16 +9,18 @@ import { Platform, View } from '../../packages/pew/src/main/engine'
 
  window.setFPS = (fps) => Platform.config.fpsTarget = fps;
 
-class Ball extends View.Item.with('vectors', 'gravity') {
+class Ball extends View.Item.with('vectors', 'gravity', 'collisions') {
   constructor () {
     // Set a random position
-    super(Platform.utils.randomNumberBetween(60, window.innerWidth - 100), Platform.utils.randomNumberBetween(60, window.innerHeight - 100), 12, 12)
+    super(Platform.utils.randomNumberBetween(60, window.innerWidth - 100), Platform.utils.randomNumberBetween(60, window.innerHeight - 100), 20, 20)
 
     this.color = Platform.utils.randomColorHex()
 
     // Set a random trajectory
-    this.setVectorX(Platform.utils.randomNumberBetween(-3, 3))
-    this.setVectorY(Platform.utils.randomNumberBetween(-3, 3))
+    this.setVectorX(Platform.utils.randomNumberBetween(-2, 2))
+    this.setVectorY(Platform.utils.randomNumberBetween(-2, 2))
+
+    this.gravityAmount = randomNumberBetween(1, 4) / 100
   }
 
   draw (ctx) {
@@ -55,6 +58,11 @@ layer.addEntity(marker)
 for (let i = 0; i < 10; i++) {
   entities.push(layer.addEntity(new Ball()))
 }
+
+Platform.hooks.on('collision', (ballA, ballB) => {
+  ballA.reflectVectorX(ballB)
+  ballA.reflectVectorY(ballB)
+})
 
 Platform.loop.add(() => {
   const {upArrow, downArrow, leftArrow, rightArrow} = Platform.input.keyboard

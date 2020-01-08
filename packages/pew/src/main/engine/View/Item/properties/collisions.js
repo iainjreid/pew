@@ -10,6 +10,9 @@ export function collisions (superclass) {
     /**
      * @todo Add items with collisions to separate list, and then check moving items against that list, thereby
      *       allowing stationary items to recieve collision detection too.
+     *
+     * @todo Add toggle to control whether collisions on this item are calculated every tick, or just when the
+     *       item is moving.
      */
     // constructor () {
     //   super(...arguments)
