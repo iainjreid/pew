@@ -23,6 +23,7 @@
       "url": "https://github.com/Chaffity/pew.git"
     },
     "scripts": {
+      "prepare": "tsc -p .",
       "test": "echo \"Error: run tests from root\" && exit 1"
     },
     "bugs": {
