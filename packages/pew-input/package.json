@@ -1,0 +1,32 @@
+{
+    "name": "@chaffity/pew-input",
+    "version": "0.0.0",
+    "description": "Input library for Pew",
+    "keywords": [
+      "input",
+      "pew"
+    ],
+    "author": "Iain Reid <iainreid382@gmail.com> (https://chaff.land)",
+    "homepage": "https://github.com/Chaffity/pew#readme",
+    "license": "MIT",
+    "main": "./lib/input.js",
+    "types": "./lib/input.d.ts",
+    "files": [
+      "lib"
+    ],
+    "dependencies": {},
+    "publishConfig": {
+      "access": "public"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Chaffity/pew.git"
+    },
+    "scripts": {
+      "prepare": "tsc -p .",
+      "test": "echo \"Error: run tests from root\" && exit 1"
+    },
+    "bugs": {
+      "url": "https://github.com/Chaffity/pew/issues"
+    }
+  }
