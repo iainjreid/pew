@@ -1,0 +1,32 @@
+{
+    "name": "@chaffity/pew-utils",
+    "version": "0.0.0",
+    "description": "Utils library for Pew",
+    "keywords": [
+      "utils",
+      "pew"
+    ],
+    "author": "Iain Reid <iainreid382@gmail.com> (https://chaff.land)",
+    "homepage": "https://github.com/Chaffity/pew#readme",
+    "license": "MIT",
+    "main": "./lib/utils.js",
+    "types": "./lib/utils.d.ts",
+    "files": [
+      "lib"
+    ],
+    "dependencies": {},
+    "publishConfig": {
+      "access": "public"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Chaffity/pew.git"
+    },
+    "scripts": {
+      "prepare": "tsc -p .",
+      "test": "echo \"Error: run tests from root\" && exit 1"
+    },
+    "bugs": {
+      "url": "https://github.com/Chaffity/pew/issues"
+    }
+  }
