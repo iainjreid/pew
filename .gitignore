@@ -1,11 +1,11 @@
 # Ignore all IDE generated paths
-.vscode
+/.vscode/
 
 # Ignore all Node.js and NPM related paths
 npm-debug.log
-node_modules
+node_modules/
 
 # Ignore build files
 /.cache/
 /dist/
-packages/*/lib/
+/packages/*/lib/
