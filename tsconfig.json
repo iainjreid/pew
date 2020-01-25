@@ -1,7 +1,40 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "strict": true
-  }
+    "baseUrl": ".",
+    "target": "es2015",
+    "module": "none",
+    "strict": true,
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "allowJs": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@chaffity/pew": [
+        "./packages/pew/lib/index"
+      ],
+      "@chaffity/pew-input": [
+        "./packages/pew-input/lib/input"
+      ],
+      "@chaffity/pew-item": [
+        "./packages/pew-item/lib/item"
+      ],
+      "@chaffity/pew-layer": [
+        "./packages/pew-layer/lib/layer"
+      ],
+      "@chaffity/pew-loop": [
+        "./packages/pew-loop/lib/loop"
+      ],
+      "@chaffity/pew-utils": [
+        "./packages/pew-utils/lib/utils"
+      ]
+    }
+  },
+  "exclude": [
+    "**/lib/**/*",
+    "**/*.spec.ts"
+  ]
 }
