@@ -16,14 +16,11 @@
       "@chaffity/pew": [
         "./packages/pew/lib/index"
       ],
+      "@chaffity/pew-canvas": [
+        "./packages/pew-canvas/lib/canvas"
+      ],
       "@chaffity/pew-input": [
         "./packages/pew-input/lib/input"
-      ],
-      "@chaffity/pew-item": [
-        "./packages/pew-item/lib/item"
-      ],
-      "@chaffity/pew-layer": [
-        "./packages/pew-layer/lib/layer"
       ],
       "@chaffity/pew-loop": [
         "./packages/pew-loop/lib/loop"
