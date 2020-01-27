@@ -3,7 +3,11 @@
     "build": "parcel build --public-url /pew samples/orbit/index.html",
     "lint": "eslint src",
     "start:orbit": "parcel samples/orbit/index.html",
+    "start:render": "parcel samples/render/index.html",
     "test": "echo \"Warn: no test specified\""
+  },
+  "alias": {
+    "@chaffity/pew-canvas": "./packages/pew-canvas"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
