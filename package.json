@@ -7,7 +7,11 @@
     "test": "echo \"Warn: no test specified\""
   },
   "alias": {
-    "@chaffity/pew-canvas": "./packages/pew-canvas"
+    "@chaffity/pew-behaviors": "./packages/pew-behaviors",
+    "@chaffity/pew-canvas": "./packages/pew-canvas",
+    "@chaffity/pew-input": "./packages/pew-input",
+    "@chaffity/pew-loop": "./packages/pew-loop",
+    "@chaffity/pew-utils": "./packages/pew-utils"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
