@@ -29,8 +29,6 @@ export class Scene extends Base {
 
     for (const layer of this.layers) {
       if (dx < layer.mx && mx > layer.dx && dy < layer.my && my > layer.dy) {
-        console.log(layer)
-
         const sx = Math.max(0, dx - layer.dx)
         const sy = Math.max(0, dy - layer.dy)
         const sWidth = Math.min(layer.width, layer.width - (layer.mx - mx))
