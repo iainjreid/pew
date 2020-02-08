@@ -16,9 +16,6 @@
       "@chaffity/pew": [
         "./packages/pew/lib/index"
       ],
-      "@chaffity/pew-behaviors": [
-        "./packages/pew-behaviors/lib/behaviors"
-      ],
       "@chaffity/pew-canvas": [
         "./packages/pew-canvas/lib/canvas"
       ],
@@ -27,6 +24,9 @@
       ],
       "@chaffity/pew-loop": [
         "./packages/pew-loop/lib/loop"
+      ],
+      "@chaffity/pew-objects": [
+        "./packages/pew-objects/lib/objects"
       ],
       "@chaffity/pew-utils": [
         "./packages/pew-utils/lib/utils"

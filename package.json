@@ -7,10 +7,10 @@
     "test": "echo \"Warn: no test specified\""
   },
   "alias": {
-    "@chaffity/pew-behaviors": "./packages/pew-behaviors",
     "@chaffity/pew-canvas": "./packages/pew-canvas",
     "@chaffity/pew-input": "./packages/pew-input",
     "@chaffity/pew-loop": "./packages/pew-loop",
+    "@chaffity/pew-objects": "./packages/pew-objects",
     "@chaffity/pew-utils": "./packages/pew-utils"
   },
   "devDependencies": {
