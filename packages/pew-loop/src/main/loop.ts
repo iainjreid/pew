@@ -10,10 +10,20 @@ export class Loop {
 
   constructor(protected freq: number) {}
 
-  public add(fn: () => void, priority: number, scope: any): void {
+  public add(fn: () => void, scope: any, priority: number): void {
     for (let i = 0, n = this.tasks.length; i < n; i++) {
       if (priority > this.tasks[i].priority) {
-        this.tasks.splice(i, 0, { fn, priority, scope });
+        return void this.tasks.splice(i, 0, { fn, priority, scope });
+      }
+    }
+
+    this.tasks.push({ fn, priority, scope })
+  }
+
+  public remove(fn: () => void, scope: any): void {
+    for (let i = 0, n = this.tasks.length; i < n; i++) {
+      if (this.tasks[n].fn === fn && this.tasks[n].scope === scope) {
+        this.tasks.splice(i, 1);
       }
     }
   }
