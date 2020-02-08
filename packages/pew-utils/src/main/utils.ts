@@ -24,7 +24,7 @@ export function randomY (): number {
   return randomNumberBetween(100, window.innerHeight - 100)
 }
 
-export function randomNumberBetween (a: number, b: number): number {``
+export function randomNumberBetween (a: number, b: number): number {
   return Math.floor(Math.random() * (b - a + 1) + a)
 }
 
