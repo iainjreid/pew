@@ -8,7 +8,7 @@ export class Loop {
   protected tasks: LoopTask[] = [];
   protected running: boolean = false;
 
-  constructor(protected freq: number) {}
+  constructor(protected freq: number | null) {}
 
   public add(fn: () => void, scope: any, priority: number): void {
     for (let i = 0, n = this.tasks.length; i < n; i++) {
@@ -52,6 +52,10 @@ export class Loop {
     // Process Recording - end
     const processEnd = performance.now()
 
-    setTimeout(() => this.process(), 1000 / this.freq - (processEnd - processStart))
+    if (this.freq) {
+      setTimeout(() => this.process(), 1000 / this.freq - (processEnd - processStart))
+    } else {
+      requestAnimationFrame(() => this.process())
+    }
   }
 }
