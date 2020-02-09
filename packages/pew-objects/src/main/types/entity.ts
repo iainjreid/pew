@@ -48,15 +48,16 @@ export abstract class Entity extends Layer {
 
     // Process gravity
     if (this.gravity.value) {
-      const pointA = { dx: this.gravity.dx || this.dx, dy: this.dy }
-      const pointB = { dx: this.dx, dy: this.gravity.dy || this.dy }
+      const pointA = { dx: this.cx, dy: this.cy }
+      const pointB = { dx: this.cx, dy: this.gravity.dy || this.cy }
+      const pointC = { dx: this.gravity.dx || this.cx, dy: this.cy }
 
-      const angle = radiansToDegrees(getAngleBetweenThreePoints(pointA, pointB, this))
+      const angle = radiansToDegrees(getAngleBetweenThreePoints(pointA, pointB, pointC))
       const lengthX = oppositeLength(angle, this.gravity.value)
       const lengthY = adjacentLength(angle, this.gravity.value)
 
-      lengthX && (this.vector.sx += this.dx < pointA.dx ? lengthX : -lengthX)
-      lengthY && (this.vector.sy += this.dy < pointB.dy ? lengthY : -lengthY)
+      lengthX && (this.vector.sx += pointA.dx < pointC.dx ? lengthX : -lengthX)
+      lengthY && (this.vector.sy += pointA.dy < pointB.dy ? lengthY : -lengthY)
     }
 
     // Process vector
