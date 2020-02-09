@@ -8,4 +8,4 @@ node_modules/
 # Ignore build files
 /.cache/
 /dist/
-/packages/*/lib/
+/packages/pew-*/lib/

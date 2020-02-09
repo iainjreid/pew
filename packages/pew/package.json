@@ -1,0 +1,37 @@
+{
+  "name": "@chaffity/pew",
+  "version": "0.0.0",
+  "description": "A smol game engine",
+  "keywords": [
+    "pew",
+    "game-engine"
+  ],
+  "author": "Iain Reid <iainreid382@gmail.com> (https://chaff.land)",
+  "homepage": "https://github.com/Chaffity/pew#readme",
+  "license": "MIT",
+  "main": "./lib/pew.js",
+  "types": "./lib/pew.d.ts",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@chaffity/pew-canvas": "^0.0.0",
+    "@chaffity/pew-input": "^0.0.0",
+    "@chaffity/pew-loop": "^0.0.0",
+    "@chaffity/pew-objects": "^0.0.0",
+    "@chaffity/pew-utils": "^0.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chaffity/pew.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Chaffity/pew/issues"
+  }
+}
