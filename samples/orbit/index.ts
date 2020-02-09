@@ -1,10 +1,6 @@
 'use strict'
 
-import { Scene } from '@chaffity/pew-canvas';
-import { keyboard } from '@chaffity/pew-input'
-import { Loop } from '@chaffity/pew-loop';
-import { Entity } from '@chaffity/pew-objects';
-import { randomColorHex, randomNumberBetween } from '@chaffity/pew-utils';
+import { Entity, Loop, Scene, keyboard, randomColorHex, randomNumberBetween } from "@chaffity/pew"
 
 class Ball extends Entity {
   constructor () {
@@ -84,7 +80,7 @@ loop.add(() => {
     entity.gravity.dx = marker.dx
     entity.gravity.dy = marker.dy
   }
-})
+}, null, 0)
 
 scene.mountScene(document.body)
 loop.start()
