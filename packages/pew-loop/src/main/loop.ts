@@ -8,7 +8,7 @@ export class Loop {
   protected tasks: LoopTask[] = [];
   protected running: boolean = false;
 
-  constructor(protected freq: number | null) {}
+  constructor(protected freq: number | null = null) {}
 
   public add(fn: () => void, scope: any, priority: number): void {
     for (let i = 0, n = this.tasks.length; i < n; i++) {
