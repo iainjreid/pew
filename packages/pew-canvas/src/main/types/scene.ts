@@ -13,6 +13,10 @@ export class Scene extends Base {
    */
   readonly layers: Layer[] = []
 
+  constructor(dx: number = 0, dy: number = 0, width: number = innerWidth, height: number = innerHeight) {
+    super(dx, dy, width, height)
+  }
+
   public addLayer(layer: Layer): void {
     this.layers[this.layers.length] = layer
   }
@@ -21,8 +25,8 @@ export class Scene extends Base {
     target.appendChild(this.ctx.canvas)
   }
 
-  public drawRegion(ctx: CanvasRenderingContext2D, dx: number, dy: number, width: number, height: number): void {
-    ctx.clearRect(dx, dy, width, height)
+  public drawRegion(dx: number, dy: number, width: number, height: number): void {
+    this.ctx.clearRect(dx, dy, width, height)
 
     const mx = dx + width
     const my = dy + height
@@ -34,7 +38,7 @@ export class Scene extends Base {
         const sWidth = Math.min(layer.width, layer.width - (layer.mx - mx))
         const sHeight = Math.min(layer.height, layer.height - (layer.my - my))
 
-        ctx.drawImage(layer.ctx.canvas, sx, sy, sWidth, sHeight, layer.dx + sx, layer.dy + sy, sWidth, sHeight)
+        this.ctx.drawImage(layer.ctx.canvas, sx, sy, sWidth, sHeight, layer.dx + sx, layer.dy + sy, sWidth, sHeight)
       }
     }
   }
