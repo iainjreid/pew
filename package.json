@@ -2,11 +2,13 @@
   "scripts": {
     "build": "parcel build --public-url /pew samples/orbit/index.html",
     "lint": "eslint src",
+    "start:bounce": "parcel samples/bounce/index.html",
     "start:orbit": "parcel samples/orbit/index.html",
     "start:render": "parcel samples/render/index.html",
     "test": "echo \"Warn: no test specified\""
   },
   "alias": {
+    "@chaffity/pew": "./packages/pew",
     "@chaffity/pew-canvas": "./packages/pew-canvas",
     "@chaffity/pew-input": "./packages/pew-input",
     "@chaffity/pew-loop": "./packages/pew-loop",

@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "paths": {
       "@chaffity/pew": [
-        "./packages/pew/lib/index"
+        "./packages/pew/lib/pew"
       ],
       "@chaffity/pew-canvas": [
         "./packages/pew-canvas/lib/canvas"
