@@ -7,5 +7,6 @@ node_modules/
 
 # Ignore build files
 /.cache/
+/coverage/
 /dist/
 /packages/pew-*/lib/
